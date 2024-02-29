@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.appmason.composeperformanceplayground.ui.screens.phases.CompositionInEveryPhase
-import com.appmason.composeperformanceplayground.ui.screens.phases.CompositionOnlyInDrawPhase
+import com.appmason.composeperformanceplayground.ui.screens.lambdas.StableClickableScreen
+import com.appmason.composeperformanceplayground.ui.screens.lambdas.UnstableClickableScreen
 import com.appmason.composeperformanceplayground.ui.theme.ComposePerformancePlaygroundTheme
 
 class MainActivity : ComponentActivity() {
@@ -28,7 +28,9 @@ class MainActivity : ComponentActivity() {
                     // UnstableLambdasScreen()
                     // StableLambdasScreen()
                     // CompositionInEveryPhase()
-                    CompositionOnlyInDrawPhase()
+                    // CompositionOnlyInDrawPhase()
+                    // UnstableClickableScreen()
+                    StableClickableScreen()
                 }
             }
         }
