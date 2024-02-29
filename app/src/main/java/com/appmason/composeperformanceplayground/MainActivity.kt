@@ -7,10 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.appmason.composeperformanceplayground.ui.screens.StableLambdasScreen
-import com.appmason.composeperformanceplayground.ui.screens.StableListScreen
-import com.appmason.composeperformanceplayground.ui.screens.UnstableLambdasScreen
-import com.appmason.composeperformanceplayground.ui.screens.UnstableListScreen
+import com.appmason.composeperformanceplayground.ui.screens.phases.CompositionInEveryPhase
+import com.appmason.composeperformanceplayground.ui.screens.phases.CompositionOnlyInDrawPhase
 import com.appmason.composeperformanceplayground.ui.theme.ComposePerformancePlaygroundTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,10 +23,12 @@ class MainActivity : ComponentActivity() {
                      * Composables with unstable parameters can be skipped.
                      * All lambdas in composable functions are now remembered for you.
                      */
-                     UnstableListScreen()
+                    // UnstableListScreen()
                     // StableListScreen()
                     // UnstableLambdasScreen()
                     // StableLambdasScreen()
+                    // CompositionInEveryPhase()
+                    CompositionOnlyInDrawPhase()
                 }
             }
         }

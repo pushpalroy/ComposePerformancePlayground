@@ -1,4 +1,4 @@
-package com.appmason.composeperformanceplayground.ui.screens
+package com.appmason.composeperformanceplayground.ui.screens.lambdas
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

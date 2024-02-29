@@ -1,4 +1,4 @@
-package com.appmason.composeperformanceplayground.ui.screens
+package com.appmason.composeperformanceplayground.ui.screens.list
 
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.foundation.layout.Column
