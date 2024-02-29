@@ -25,10 +25,10 @@ class MainActivity : ComponentActivity() {
                      * Composables with unstable parameters can be skipped.
                      * All lambdas in composable functions are now remembered for you.
                      */
-                    // UnstableListScreen()
+                     UnstableListScreen()
                     // StableListScreen()
                     // UnstableLambdasScreen()
-                    StableLambdasScreen()
+                    // StableLambdasScreen()
                 }
             }
         }
