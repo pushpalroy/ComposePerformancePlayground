@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.appmason.composeperformanceplayground.ui.screens.lambdas.StableClickableScreen
-import com.appmason.composeperformanceplayground.ui.screens.lambdas.UnstableClickableScreen
+import com.appmason.composeperformanceplayground.ui.screens.lambdas.StableClickableListScreen
+import com.appmason.composeperformanceplayground.ui.screens.lambdas.UnstableClickableListScreen
 import com.appmason.composeperformanceplayground.ui.theme.ComposePerformancePlaygroundTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,18 +19,18 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     /**
-                     * With strong skipping enabled:
-                     * Composables with unstable parameters can be skipped.
-                     * All lambdas in composable functions are now remembered for you.
+                     * Uncomment one screen at a time to run each example.
                      */
                     // UnstableListScreen()
                     // StableListScreen()
+                    // UnstableClickableListScreen()
+                    StableClickableListScreen()
                     // UnstableLambdasScreen()
                     // StableLambdasScreen()
                     // CompositionInEveryPhase()
                     // CompositionOnlyInDrawPhase()
                     // UnstableClickableScreen()
-                    StableClickableScreen()
+                    // StableClickableScreen()
                 }
             }
         }

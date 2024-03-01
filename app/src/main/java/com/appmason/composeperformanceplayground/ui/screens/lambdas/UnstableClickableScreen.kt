@@ -19,6 +19,8 @@ import androidx.compose.ui.unit.dp
  * Using Modifier.clickable(), lambda object onClick is always reallocated whenever the
  * [UnstableClickableScreen] composable recomposes. In short the value of onClick is not
  * auto-remembered which causes reallocation everytime.
+ *
+ * See the solution in [StableClickableScreen].
  */
 @Composable
 fun UnstableClickableScreen() {

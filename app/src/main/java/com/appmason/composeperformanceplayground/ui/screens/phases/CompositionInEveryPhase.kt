@@ -30,6 +30,8 @@ import kotlinx.coroutines.delay
  *
  * Modifier.background(color) causes the compose to go through all the 3 phases.
  * Hence a lot of work is done if the color is animated.
+ *
+ * See the solution in [CompositionOnlyInDrawPhase].
  */
 @Composable
 fun CompositionInEveryPhase() {

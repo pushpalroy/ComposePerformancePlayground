@@ -20,9 +20,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.appmason.composeperformanceplayground.ui.screens.lambdas.UnstableClickableListScreen
 import kotlinx.coroutines.delay
 
 /**
+ * Here the issue faced in [CompositionInEveryPhase] is fixed.
+ *
  * Modifier.drawBehind{} instead of Modifier.background(color) causes the compose to go through only the draw phase.
  * It is an important concept to defer reading state until you need it.
  * It makes functions to be executed again less frequently and skip Composition or Layout.

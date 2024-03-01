@@ -18,11 +18,14 @@ import androidx.compose.ui.unit.dp
 import com.appmason.composeperformanceplayground.ui.common.Article
 import com.appmason.composeperformanceplayground.ui.common.FavoriteButton
 import com.appmason.composeperformanceplayground.ui.common.ListViewModel
+import com.appmason.composeperformanceplayground.ui.screens.lambdas.StableClickableScreen
 
 /**
  * Without strong skipping mode enabled, when the FavoriteButton was toggled, the list of articles
  * would also be recomposed as it has an unstable parameter type (List). With strong skipping enabled,
  * ArticleList would be skipped as the list instance (articles), has not changed.
+ *
+ * See the solution in [StableListScreen].
  */
 @Composable
 fun UnstableListScreen(viewModel: ListViewModel = viewModel()) {
@@ -37,7 +40,7 @@ fun UnstableListScreen(viewModel: ListViewModel = viewModel()) {
 }
 
 @Composable
-fun UnstableList(
+private fun UnstableList(
     articles: List<Article>, // List = Unstable, Article = Stable
     modifier: Modifier = Modifier // Stable
 ) {

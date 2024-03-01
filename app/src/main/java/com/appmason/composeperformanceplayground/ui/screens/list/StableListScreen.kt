@@ -18,9 +18,12 @@ import androidx.compose.ui.unit.dp
 import com.appmason.composeperformanceplayground.ui.common.Article
 import com.appmason.composeperformanceplayground.ui.common.FavoriteButton
 import com.appmason.composeperformanceplayground.ui.common.ListViewModel
+import com.appmason.composeperformanceplayground.ui.screens.phases.CompositionInEveryPhase
 import kotlinx.collections.immutable.PersistentList
 
 /**
+ * Here the issue faced in [UnstableListScreen] is fixed.
+ *
  * By using PersistentList from Kotlinx Immutable collections, articles became stable.
  * Hence, when the FavoriteButton was toggled, the list of articles was not recomposed.
  */
@@ -37,7 +40,7 @@ fun StableListScreen(viewModel: ListViewModel = viewModel()) {
 }
 
 @Composable
-fun StableList(
+private fun StableList(
     articles: PersistentList<Article>, // PersistentList = Stable, Article = Stable
     modifier: Modifier = Modifier // Stable
 ) {

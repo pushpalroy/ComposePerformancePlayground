@@ -30,6 +30,8 @@ import com.appmason.composeperformanceplayground.ui.common.NumberComposable
  * the composable and compares it to its previous value. The runtime sees that current is the same value but onValueChange has changed because it
  * has been reallocated and lambdas just use reference equality for their equals check (the object addresses are not the same), therefore the composable
  * is recomposed because its inputs have changed. The recomposition was caused by the lambda object changing, not the lambda being unstable.
+ *
+ * See the solution in [StableLambdasScreen].
  */
 @Composable
 fun UnstableLambdasScreen(viewModel: ListViewModel = viewModel()) { // ListViewModel is unstable
