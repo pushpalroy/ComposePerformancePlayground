@@ -7,7 +7,5 @@ This repo plays around to analyze the stability and performance of Composables c
 It also tries to compare the performance when using the better approach.
 Composition inspection should be done along with the examples in this repo using Layout Inspector.
 
-Also, this repo is closely linked to this article: [Jetpack Compose: Strong Skipping Mode Explained](https://medium.com/androiddevelopers/jetpack-compose-strong-skipping-mode-explained-cbdb2aa4b900)
-Right now the examples in this repo do not use "Strong Skipping Mode", and experiments without using this feature.
-
-The plan is to experiment with "Strong Skipping Mode" soon in this repo.
+Please follow the blog on Medium alongside this code:
+[Overcoming Common Performance Pitfalls in Jetpack Compose](https://medium.com/@pushpalroy2007/overcoming-common-performance-pitfalls-in-jetpack-compose-98e6b155fbb4)
