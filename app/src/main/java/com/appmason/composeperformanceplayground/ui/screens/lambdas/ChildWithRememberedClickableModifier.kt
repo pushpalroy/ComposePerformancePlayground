@@ -16,14 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 /**
- * Using Modifier.clickable(), lambda object onClick is always reallocated whenever the
- * [UnstableClickableScreen] composable recomposes. In short the value of onClick is not
- * auto-remembered which causes reallocation everytime.
- *
- * See the solution in [StableClickableScreen].
+ * To fix the issue in [ChildWithNonRememberedClickableModifier], the onClick lambda is wrapped
+ * in a remember block thus reallocation of this object does not happen everytime.
  */
 @Composable
-fun UnstableClickableScreen() {
+fun ChildWithRememberedClickableModifier() {
     var text by remember { mutableStateOf("") }
     var isClicked by remember { mutableStateOf(false) }
     Column(modifier = Modifier.padding(24.dp)) {
@@ -35,7 +32,11 @@ fun UnstableClickableScreen() {
         Text(
             modifier = Modifier
                 .padding(8.dp)
-                .clickable { isClicked = !isClicked },
+                .then(
+                    remember {
+                        Modifier.clickable { isClicked = !isClicked }
+                    }
+                ),
             text = "Toggle me"
         )
         Spacer(modifier = Modifier.height(16.dp))

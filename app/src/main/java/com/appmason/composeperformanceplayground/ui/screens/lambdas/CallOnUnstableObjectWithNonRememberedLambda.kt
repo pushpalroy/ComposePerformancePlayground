@@ -25,16 +25,16 @@ import com.appmason.composeperformanceplayground.ui.common.NumberComposable
  * because its inputs haven’t changed and the compiler report also confirms that it is skippable. But at runtime they see the layout inspector
  * showing this isn’t the case.
  *
- * The catch is that lambdas are just objects under the hood. When the [UnstableLambdasScreen] composable is recomposed, the onValueChange lambda
+ * The catch is that lambdas are just objects under the hood. When the [CallOnUnstableObjectWithNonRememberedLambda] composable is recomposed, the onValueChange lambda
  * of [NumberComposable] is reallocated. When the [NumberComposable] is evaluated for skipping, compose runtime looks at each argument passed into
  * the composable and compares it to its previous value. The runtime sees that current is the same value but onValueChange has changed because it
  * has been reallocated and lambdas just use reference equality for their equals check (the object addresses are not the same), therefore the composable
  * is recomposed because its inputs have changed. The recomposition was caused by the lambda object changing, not the lambda being unstable.
  *
- * See the solution in [StableLambdasScreen].
+ * See the solution in [CallOnUnstableObjectWithRememberedLambda].
  */
 @Composable
-fun UnstableLambdasScreen(viewModel: ListViewModel = viewModel()) { // ListViewModel is unstable
+fun CallOnUnstableObjectWithNonRememberedLambda(viewModel: ListViewModel = viewModel()) { // ListViewModel is unstable
     val number by viewModel.number.collectAsState()
     var text by remember { mutableStateOf("") }
     Column(modifier = Modifier.padding(16.dp)) {

@@ -18,7 +18,7 @@ import com.appmason.composeperformanceplayground.ui.common.ListViewModel
 import com.appmason.composeperformanceplayground.ui.common.NumberComposable
 
 /**
- * Here the issue faced in [UnstableLambdasScreen] is fixed.
+ * Here the issue faced in [CallOnUnstableObjectWithNonRememberedLambda] is fixed.
  *
  * Here we are wrapping the numberChanged call in a remember block. As the lambda would no longer be reallocated on recomposition,
  * thanks to the remember call, the inputs to the [NumberComposable] would be the same and so the composable would be skipped. This thing is
@@ -26,7 +26,7 @@ import com.appmason.composeperformanceplayground.ui.common.NumberComposable
  * unstable captures as well, which means every lambda in a composable function is now memoized.
  */
 @Composable
-fun StableLambdasScreen(viewModel: ListViewModel = viewModel()) { // ListViewModel is unstable
+fun CallOnUnstableObjectWithRememberedLambda(viewModel: ListViewModel = viewModel()) { // ListViewModel is unstable
     val number by viewModel.number.collectAsState()
     var text by remember { mutableStateOf("") }
     Column(modifier = Modifier.padding(16.dp)) {

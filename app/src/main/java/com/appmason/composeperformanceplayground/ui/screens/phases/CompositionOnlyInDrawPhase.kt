@@ -3,7 +3,6 @@ package com.appmason.composeperformanceplayground.ui.screens.phases
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -20,7 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.appmason.composeperformanceplayground.ui.screens.lambdas.UnstableClickableListScreen
 import kotlinx.coroutines.delay
 
 /**
@@ -40,11 +38,8 @@ fun CompositionOnlyInDrawPhase() {
         val endColor = Color.Green
         val backgroundColor by animateColorAsState(
             if (isNeedColorChange) endColor else startColor,
-            animationSpec = tween(
-                durationMillis = 800,
-                delayMillis = 100,
-                easing = LinearEasing
-            ), label = "color animation"
+            animationSpec = tween(durationMillis = 800, delayMillis = 100, easing = LinearEasing),
+            label = "color animation"
         )
         LaunchedEffect(Unit) {
             while (true) {
@@ -59,11 +54,6 @@ fun CompositionOnlyInDrawPhase() {
                 .drawBehind {
                     drawRect(color = backgroundColor)
                 }
-        )
-
-        Text(
-            modifier = Modifier.align(Alignment.BottomCenter),
-            text = "I have nothing to do with the Box"
         )
     }
 }

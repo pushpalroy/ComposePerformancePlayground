@@ -43,11 +43,8 @@ fun CompositionInEveryPhase() {
         val endColor = Color.Green
         val backgroundColor by animateColorAsState(
             if (isNeedColorChange) endColor else startColor,
-            animationSpec = tween(
-                durationMillis = 800,
-                delayMillis = 100,
-                easing = LinearEasing
-            ), label = "color animation"
+            animationSpec = tween(durationMillis = 800, delayMillis = 100, easing = LinearEasing),
+            label = "color animation"
         )
         LaunchedEffect(Unit) {
             while (true) {
@@ -60,11 +57,6 @@ fun CompositionInEveryPhase() {
                 .size(300.dp)
                 .align(Alignment.Center)
                 .background(color = backgroundColor)
-        )
-
-        Text(
-            modifier = Modifier.align(Alignment.BottomCenter),
-            text = "I have nothing to do with the Box"
         )
     }
 }

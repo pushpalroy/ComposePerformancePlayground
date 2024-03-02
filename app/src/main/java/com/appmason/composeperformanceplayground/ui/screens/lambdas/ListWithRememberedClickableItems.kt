@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -21,15 +22,12 @@ import com.appmason.composeperformanceplayground.ui.common.Article
 import com.appmason.composeperformanceplayground.ui.common.ListViewModel
 
 /**
- * Here on adding each item to the LazyList, the entire list (previous items) are recomposed.
- * This is because we have the clickable() modifier on each item of the list.
- * So the lambda onClick of each item is reallocated every time the LazyColumn recomposes.
- * Again this is because the object of the lambda is not remembered.
- *
- * See the solution in [StableClickableListScreen].
+ * Here the issue faced in [ListWithNonRememberedClickableItems] is fixed by wrapping the clickable in
+ * a remember block. As the lambda object is remembered now, reallocation of the object does not
+ * happen for all items of the LazyList.
  */
 @Composable
-fun UnstableClickableListScreen(viewModel: ListViewModel = viewModel()) {
+fun ListWithRememberedClickableItems(viewModel: ListViewModel = viewModel()) {
     val dynamicList by viewModel.dynamicArticles.collectAsState()
     Column(
         modifier = Modifier.padding(16.dp)
@@ -40,22 +38,26 @@ fun UnstableClickableListScreen(viewModel: ListViewModel = viewModel()) {
             Text(text = "Add item")
         }
         Spacer(modifier = Modifier.height(32.dp))
-        UnstableClickableList(dynamicList)
+        ListWithRememberedClickableItems(dynamicList)
     }
 }
 
 @Composable
-private fun UnstableClickableList(
-    articles: List<Article>, // List = Unstable, Article = Stable
-    modifier: Modifier = Modifier // Stable
+private fun ListWithRememberedClickableItems(
+    articles: List<Article>,
+    modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
     LazyColumn(modifier = modifier) {
         items(articles) { article ->
             Text(
-                modifier = Modifier.clickable {
-                    Toast.makeText(context, "Clicked on item: ${article.id}", Toast.LENGTH_SHORT).show()
-                },
+                modifier = Modifier.then(
+                    remember {
+                        Modifier.clickable { // Remembered
+                            Toast.makeText(context, "Clicked item: ${article.id}", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                ),
                 text = article.name
             )
         }
